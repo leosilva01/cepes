@@ -1,0 +1,54 @@
+<style>
+table{
+	width: 60%; <!-- 900px -->
+    border: 1px solid navy;
+    border-collapse: collapse;
+    font-size: 11pt;
+    font-family: Arial, sans-serif;
+    color: navy;
+}
+
+th, td, tr {
+    text-align: left;
+    font-size: 11pt;
+    font-family: Arial, sans-serif;
+    color: navy;
+    border: 1px solid navy;
+    border-collapse: collapse;
+}
+
+.estilo {
+	font-size: 11pt;
+	font-family: Arial, sans-serif; color: navy;
+}
+
+</style>
+<span class = "estilo">Senhor Gerente,
+
+1.	Para acompanhamento, encaminhamos a relação dos empregados, vinculados a essa unidade, indicados para a <b>Turma $turma</b> do Curso de <b>Atualização da Certificação ANBIMA:</b><br>
+<table>
+	<tr>
+		<th> UNIDADE    </th>
+		<th> EMPREGADO  </th>
+		<th> MATRICULA  </th>
+		<th> VENCIMENTO </th>
+		<th> CPA        </th>
+	</tr>
+	#foreach( $empregado in $empregados )
+	<tr>
+		<td> $empregado.Sr.unidade                                 </td>
+		<td> $empregado.nome                                       </td>
+		<td> $empregado.matricula                                  </td>
+		<td> $date.format("dd/MM/yyyy", $empregado.dataVencimento) </td>
+		<td> $empregado.tipoCertificacao                           </td>
+	</tr>
+	#end
+</table>
+
+2.	O curso, à distância (on line), é ministrado pela empresa <u>Foco Educacional</u>, que encaminhou, em <b>$dataTurma</b>, mensagem, para a caixa postal do empregado, com as orientações iniciais de acesso.
+3.	Caso não haja interesse do empregado em participar da ação educacional, pedimos orientá-lo a retornar, em até 03 (três dias), a partir de <b>$dataTurma</b>, data de início do curso, pedindo o cancelamento da matrícula, evitando, assim, custos desnecessários à CAIXA.
+4.	Caso, entre os empregados indicados, exista algum com afastamento que impeça a participação no curso, pedimos a essa gestora que nos informe, prontamento, a fim de cancelar a matrícula e evitar quaisquer gasto desnecessário à CAIXA.
+5.	Alertamos que esta é a única opção de atualização oferecida com custeio CAIXA.
+
+Atenciosamente,
+<b>Equipe Educação Coorporativa.</b></span>
