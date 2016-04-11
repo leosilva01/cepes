@@ -15,8 +15,6 @@ import util.GeradorDeEmail;
 
 public class Teste {
 
-
-
 	public static void main(final String[] args) throws Exception {
 		
 		double inicio = System.currentTimeMillis();
