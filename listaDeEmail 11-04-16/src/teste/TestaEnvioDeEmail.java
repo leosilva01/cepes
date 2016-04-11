@@ -70,7 +70,7 @@ public class TestaEnvioDeEmail {
 
 		email.setHostName("correio.corp.caixa.gov.br");
 
-		email.setAuthenticator(new DefaultAuthenticator("c143160", "9Bilu4"));
+		email.setAuthenticator(new DefaultAuthenticator("", ""));
 
 		email.setSmtpPort(587);
 		
@@ -80,7 +80,7 @@ public class TestaEnvioDeEmail {
 
 			email.setFrom("leo.m.silva@caixa.gov.br");
 
-			email.setSubject("IMPORTANTE: Atualização AMBIMA CPA10/CPA20");
+			email.setSubject("IMPORTANTE: Atualizaï¿½ï¿½o AMBIMA CPA10/CPA20");
 
 			email.setMsg(writer.toString());
 
