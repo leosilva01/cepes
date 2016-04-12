@@ -29,7 +29,7 @@ public class EnviadorDeEmail {
 			
 			email.setFrom("leo.m.silva@caixa.gov.br");
 			
-			email.setSubject("IMPORTANTE: Atualiza��o AMBIMA CPA10/CPA20");
+			email.setSubject("IMPORTANTE: Atualização AMBIMA CPA10/CPA20");
 
 			email.setMsg(CorpoDaMensagem);
 			
