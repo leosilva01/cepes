@@ -1,5 +1,6 @@
 package util;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Date;
@@ -7,13 +8,13 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import modelo.ChaveValor;
-import modelo.Empregado;
-import modelo.SR;
-
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
+
+import modelo.ChaveValor;
+import modelo.Empregado;
+import modelo.SR;
 
 public class ExcelHelper {
 
@@ -25,7 +26,7 @@ public class ExcelHelper {
 
 	private final Set<SR> listaDeSr = new HashSet<>();
 
-	public ExcelHelper( final InputStream inputStream ) throws Exception {
+	public ExcelHelper( final InputStream inputStream ) throws IOException {
 
 		this.workbook = new HSSFWorkbook(inputStream);
 
@@ -49,11 +50,11 @@ public class ExcelHelper {
 
 			final String srUnidade = this.recuperarUnidade(sheet, i);
 
-			final ChaveValor<String, String> chaveValor = this.recuperarSREmail(sheet, i, srUnidade);// Retorna Chave=Código; Valor=Email
+			final ChaveValor<String, String> chaveValor = this.recuperarSREmail(sheet, i, srUnidade);// Retorna Chave=Cï¿½digo; Valor=Email
 
 			if (chaveValor == null || chaveValor.invalida()) {
 
-				throw new IllegalStateException("Código da SR ou Email estão nulos.");
+				throw new IllegalStateException("Cï¿½digo da SR ou Email estï¿½o nulos.");
 			}
 
 			final Date dataVencimento = sheet.getRow(i).getCell(6).getDateCellValue();
@@ -66,10 +67,10 @@ public class ExcelHelper {
 
 			this.listaDeSr.add(sr);
 		}
-		
+
 		return empregados;
 	}
-	
+
 	private ChaveValor<String, String> recuperarSREmail(final HSSFSheet sheet, final int i, final String srUnidade) {
 
 		final ChaveValor<String, String> retorno = new ChaveValor<>();
