@@ -8,23 +8,24 @@ import javafx.stage.Stage;
 
 public class FormPrincipalFX extends Application {
 
-	public static void main(String[] args) {
-		
-		
-		launch(args);
+	public static void main(final String[] args) {
+
+		Application.launch(args);
 	}
 
 	@Override
-	public void start(Stage stage) throws Exception {
+	public void start(final Stage stage) throws Exception {
 
-		Parent root = FXMLLoader.load(getClass().getResource("LayoutPrincipal.fxml"));
+		final Parent root = FXMLLoader.load(this.getClass().getResource("LayoutPrincipal.fxml"));
 
-		Scene scene = new Scene(root, 400, 200);
-		
+		stage.setResizable(false);
+
+		final Scene scene = new Scene(root, 300, 200);
+
 		stage.setTitle("Enviador de Emails");
-		
+
 		stage.setScene(scene);
-		
+
 		stage.show();
 
 	}

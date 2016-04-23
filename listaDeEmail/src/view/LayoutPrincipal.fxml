@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
+<?import javafx.scene.control.ProgressIndicator?>
 <?import jidefx.scene.control.field.FormattedTextField?>
 <?import jidefx.scene.control.field.DateField?>
-<?import jidefx.scene.control.field.MaskTextField?>
 
 
 <GridPane xmlns:fx="http://javafx.com/fxml"
@@ -20,13 +19,16 @@
 
 		<Label text = "Turma:" GridPane.columnIndex = "0" GridPane.rowIndex = "0" />
 
-		<FormattedTextField id = "formattedTextFieldTurma" fx:id="formattedTextFieldTurma" prefWidth = "20.0" GridPane.columnIndex = "1" GridPane.rowIndex = "0" />
+		<FormattedTextField fx:id="formattedTextFieldTurma" prefWidth = "20.0" GridPane.columnIndex = "1" GridPane.rowIndex = "0" />
 		
 		<Label text = "Data:" GridPane.columnIndex = "0" GridPane.rowIndex = "1" />
 		
-		<DateField id = "dateFieldData" fx:id="dateFieldData" GridPane.columnIndex = "1" GridPane.rowIndex = "1" />
+		<DateField fx:id="dateFieldData" GridPane.columnIndex = "1" GridPane.rowIndex = "1" />
 		
-		<Button GridPane.columnSpan = "2" GridPane.rowIndex="2" text = "Selecionar planilha" onAction="#onSelecionaPlanilha"/>
+		<ProgressIndicator fx:id="progressIndicator" GridPane.columnSpan = "2" prefHeight="51.0" prefWidth="118.0" GridPane.rowIndex = "2" />
+		
+		<Button fx:id="btSelecionarPlanilha" GridPane.columnSpan = "2" GridPane.rowIndex="3" text = "Selecionar planilha" onAction="#onSelecionaPlanilha"/>
+	
 	</children>
 
 </GridPane>

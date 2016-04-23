@@ -2,10 +2,14 @@ package controller;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.InputStream;
 
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
+import javafx.scene.control.ProgressIndicator;
 import javafx.stage.FileChooser;
 import jidefx.scene.control.field.DateField;
 import jidefx.scene.control.field.FormattedTextField;
@@ -21,25 +25,31 @@ public class FormPrincipalFXController {
 	@FXML
 	private DateField dateFieldData;
 
-	private FileInputStream inputStream;
+	@FXML
+	private ProgressIndicator progressIndicator;
+
+	@FXML
+	private Button btSelecionarPlanilha;
 
 	@FXML
 	public void onSelecionaPlanilha() {
 
-		final File arquivo = this.configureFileChooser();
+		final File arquivo = this.selecionaArquivo();
 
 		if (arquivo != null) {
 
 			try {
-				this.inputStream = new FileInputStream(arquivo.getAbsolutePath());
+				final InputStream inputStream = new FileInputStream(arquivo.getAbsolutePath());
 
-				final ExcelHelper excel = new ExcelHelper(this.inputStream);
+				final ExcelHelper excel = new ExcelHelper(inputStream);
 
-				final GeradorDeEmail gerador = new GeradorDeEmail();
+				final Task<Void> task = GeradorDeEmail.geraEmail(excel.getListaDeEmpregados(), excel.getListaDeSr(), this.formattedTextFieldTurma.getText(), this.dateFieldData.getText());
 
-				gerador.geraEmail(excel.getListaDeEmpregados(), excel.getListaDeSr(), this.formattedTextFieldTurma.getText(), this.dateFieldData.getText());
+				this.progressIndicator.progressProperty().bind(task.progressProperty());
 
-				this.mostraMensagem(AlertType.INFORMATION, "Mensagens enviadas com sucesso.");
+				this.btSelecionarPlanilha.disableProperty().bind(task.runningProperty());
+
+				new Thread(task).start();
 
 			} catch (final Exception e) {
 
@@ -61,7 +71,7 @@ public class FormPrincipalFXController {
 
 	}
 
-	private File configureFileChooser() {
+	private File selecionaArquivo() {
 
 		final FileChooser fileChooser = new FileChooser();
 
